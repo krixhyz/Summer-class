@@ -1,0 +1,4 @@
+Installed and set up laravel and composer.
+Created a new git repo.
+Pushed the laravel files to repo.
+Created a branch Krishhh.
