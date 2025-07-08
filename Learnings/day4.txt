@@ -1,0 +1,15 @@
+migration
+seeding
+value sending
+dispaly information 
+looping through array 
+order by,limit
+get and first 
+model
+
+
+
+hw:
+user seeding
+genre index
+movies index
