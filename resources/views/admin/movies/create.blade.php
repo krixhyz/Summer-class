@@ -5,7 +5,7 @@
 @section('content')
 <h1 class="mb-4">Add New Movie</h1>
 
-<form action="" method="POST">
+<form action="{{ route('admin.movies.store') }}" method="POST">
     @csrf
 
     <div class="mb-3">

@@ -11,20 +11,20 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('admin-users') }}"
-               class="nav-link {{ request()->routeIs('admin-users') ? 'active text-warning bg-secondary' : 'text-white' }}">
+            <a href="{{ route('admin.users.index') }}"
+               class="nav-link {{ request()->routeIs('admin.users.index') ? 'active text-warning bg-secondary' : 'text-white' }}">
                 <i class="bi bi-person me-2"></i> Users
             </a>
         </li>
         <li>
-            <a href="{{ route('admin-genres') }}"
-               class="nav-link {{ request()->routeIs('admin-genres') ? 'active text-warning bg-secondary' : 'text-white' }}">
+            <a href="{{ route('admin.genres.index') }}"
+               class="nav-link {{ request()->routeIs('admin.genres.index') ? 'active text-warning bg-secondary' : 'text-white' }}">
                 <i class="bi bi-tv me-2"></i> Genres
             </a>
         </li>
         <li>
-            <a href="{{ route('admin-movies') }}"
-               class="nav-link {{ request()->routeIs('admin-movies') ? 'active text-warning bg-secondary' : 'text-white' }}">
+            <a href="{{ route('admin.movies.index') }}"
+               class="nav-link {{ request()->routeIs('admin.movies.index') ? 'active text-warning bg-secondary' : 'text-white' }}">
                 <i class="bi bi-film me-2"></i> Movies
             </a>
         </li>

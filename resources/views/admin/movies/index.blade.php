@@ -5,6 +5,25 @@
 @section('content')
 <h1 class="mb-4">Movies</h1>
 
+
+
+{{-- Search Form --}}
+<form action="{{ route('admin.movies.index') }}" method="GET">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search Movie here" value="{{ request()->search }}">
+
+                <select name="genre_id">
+                    <option value="">Select Genre</option>
+                    @foreach($genres as $genre)
+                    <option value="{{ $genre->id }}" @if($genre->id == request()->genre_id) selected @endif>{{ $genre->name }}</option>
+                    @endforeach
+                </select>
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </div>
+        </form>
+
+
+
 <table class="table table-bordered table-striped">
     <thead class="table-light">
         <tr>
@@ -33,7 +52,7 @@
             <td>{{ \Carbon\Carbon::parse($movie->release_date)->format('d M Y') }}</td>
             <td>{{ $movie->rating }}</td>
             <td>
-                <a href=""><i class="fas fa-edit text-primary"></i></a>
+                <a href="{{ route('admin.movies.edit', $movie->id) }}"><i class="fas fa-edit text-primary"></i></a>
                
                 <form action="{{ route('admin.movies.delete', $movie->id) }}" method="POST" style="display: inline;"
                         onsubmit="return confirm('Are you sure you want to delete this movie?')">

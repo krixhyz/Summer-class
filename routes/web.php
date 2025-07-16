@@ -6,28 +6,41 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Middleware\RoleMiddleware;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
-Route::get('/admin/users', [UserController::class, 'index'])->name('admin-users');
-Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
-Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
-Route::delete('/admin/users/{userId}', [UserController::class, 'delete'])->name('admin.users.delete');
-Route::patch('/admin/users/{update}', [UserController::class, 'update'])->name('admin.users.update');
+// User Routes
+Route::prefix('admin/users')->as('admin.users.')->controller(UserController::class)->group(function () {
+    Route::get('/', 'index')->name('index'); // Route name: admin.users.index (same as 'admin-users')
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::delete('/{userId}', 'delete')->name('delete');
+    Route::get('/{userId}', 'edit')->name('edit');
+    Route::put('/{userId}', 'update')->name('update'); 
+   
+});
 
+// Genre Routes
+Route::prefix('admin/genres')->as('admin.genres.')->controller(GenreController::class)->group(function () {
+    Route::get('/', 'index')->name('index'); // Route name: admin.genres.index (same as 'admin-genres')
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::delete('/{genreId}', 'delete')->name('delete');
+    Route::get('/{genreId}', 'edit')->name('edit');
+    Route::put('/{genreId}', 'update')->name('update'); 
+});
 
-
-Route::get('/admin/genres', [GenreController::class, 'index'])->name('admin-genres');
-Route::get('/admin/genres/create', [GenreController::class, 'create'])->name('admin.genres.create');
-Route::post('/admin/genres/store', [GenreController::class, 'store'])->name('admin.genres.store');
-Route::delete('/admin/genres/{genreId}', [GenreController::class, 'delete'])->name('admin.genres.delete');
-Route::patch('/admin/genres/{genreId}', [GenreController::class, 'update'])->name('admin.genres.update');
-
-
-
-
-Route::get('/admin/movies', [MovieController::class, 'index'])->name('admin-movies');
-Route::get('/admin/movies/create', [MovieController::class, 'create'])->name('admin.movies.create');
-Route::post('/admin/movies/store', [MovieController::class, 'store'])->name('admin.movies.store');
-Route::delete('/admin/movies/{movieId}', [MovieController::class, 'delete'])->name('admin.movies.delete');
+// Movie Routes
+Route::prefix('admin/movies')
+->as('admin.movies.')
+->middleware((RoleMiddleware::class))
+->controller(MovieController::class)->group(function () {
+    Route::get('/', 'index')->name('index'); // Route name: admin.movies.index (same as 'admin-movies')
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::delete('/{movieId}', 'delete')->name('delete');
+    Route::get('/{movieId}', 'edit')->name('edit');
+    Route::put('/{movieId}', 'update')->name('update');  
+});

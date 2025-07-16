@@ -2,6 +2,14 @@
 @section('content')
 <div class="container mt-4">
     <h2 class="mb-4">Users List</h2>
+
+
+    {{-- Search Form --}}
+<form method="GET" action="{{ route('admin.users.index') }}" class="mb-3 d-flex" role="search">
+    <input type="text" name="search" class="form-control me-2" placeholder="Search users by name..." value="{{ request('search') }}">
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
@@ -24,7 +32,7 @@
                 <td>{{ $user->created_at->format('d-M-Y') }}</td>
                 
                 <td>
-                <a href=""><i class="fas fa-edit text-primary"></i></a>
+                <a href="{{route('admin.users.edit', $user->id)}}"><i class="fas fa-edit text-primary"></i></a>
                
                 <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" style="display: inline;"
                         onsubmit="return confirm('Are you sure you want to delete this user?')">
