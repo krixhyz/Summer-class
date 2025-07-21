@@ -19,9 +19,12 @@
         </li>
 
 <li class="nav-item">
-    <a class="btn btn-outline-warning btn-sm ms-2 d-flex align-items-center" href="">
-        <i class="bi bi-box-arrow-right me-1"></i> Logout
-    </a>
+    <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" class="btn btn-outline-warning btn-sm ms-2 d-flex align-items-center">
+            <i class="bi bi-box-arrow-right me-1"></i> Logout
+        </button>
+    </form>
 </li>
 
 

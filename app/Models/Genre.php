@@ -20,4 +20,13 @@ class Genre extends Model
     }
     return $query;
     }
+
+
+
+
+    public function movies()
+    {
+        return $this->hasMany(Movie::class);
+    }
+
 }
