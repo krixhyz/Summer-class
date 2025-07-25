@@ -9,7 +9,7 @@ use App\Models\Genre;
 
 class DashboardController extends Controller
 {
-    public function dashboard()
+    public function index()
     {
       
 

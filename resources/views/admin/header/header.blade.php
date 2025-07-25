@@ -13,7 +13,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active text-warning fw-bold' : '' }}" href="{{ route('admin.dashboard') }}">
+          <a class="nav-link {{ request()->routeIs('admin.dashboard.index') ? 'active text-warning fw-bold' : '' }}" href="{{ route('admin.dashboard.index') }}">
             Admin Dashboard
           </a>
         </li>
